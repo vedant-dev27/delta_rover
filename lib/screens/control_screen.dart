@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:delta_rover/widgets/control/camera/camera_view.dart';
 
 class ControlScreen extends StatelessWidget {
   const ControlScreen({super.key});
@@ -6,13 +7,17 @@ class ControlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Control"),
-      ),
-      body: const Center(
-        child: Text(
-          "Robot Controls Here",
-        ),
+      body: const Column(
+        children: [
+          CameraView(),
+          Expanded(
+            child: Center(
+              child: Text(
+                "Robot Controls Here",
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
