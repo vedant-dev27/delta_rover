@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:delta_rover/widgets/add_dialog.dart';
 import 'package:delta_rover/models/device.dart';
+import 'package:delta_rover/widgets/device_tile.dart';
+import 'control_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,9 +45,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               itemBuilder: (context, index) {
                 final device = devices[index];
 
-                return ListTile(
-                  title: Text(device.name),
-                  subtitle: Text(device.ip),
+                return DeviceTile(
+                  device: device,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ControlScreen(),
+                      ),
+                    );
+                  },
                 );
               },
             ),
