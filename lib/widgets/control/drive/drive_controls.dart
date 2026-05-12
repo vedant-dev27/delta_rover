@@ -34,11 +34,14 @@ class DriveControls extends StatelessWidget {
 
             const SizedBox(width: 8),
 
-            const SizedBox(
+            Container(
               width: 56,
               height: 56,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
+                shape: BoxShape.circle,
+              ),
             ),
-
             const SizedBox(width: 8),
 
             DriveButton(
