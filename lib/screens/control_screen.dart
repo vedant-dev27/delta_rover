@@ -20,6 +20,11 @@ class _ControlScreenState extends State<ControlScreen> {
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.immersiveSticky,
     );
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
 
   @override
@@ -28,34 +33,59 @@ class _ControlScreenState extends State<ControlScreen> {
       SystemUiMode.edgeToEdge,
     );
 
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Column(
-        children: [
-          CameraView(),
+      backgroundColor: const Color(0xFF0F0D13),
 
-          Padding(
-            padding: EdgeInsets.all(12),
-            child: SensorPanel(),
-          ),
-
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: Row(
+          children: [
+            // LEFT PANEL
+            Container(
+              width: 220,
+              padding: const EdgeInsets.all(16),
+              child: Column(
                 children: [
-                  DriveControls(),
-                  ServoControls(),
+                  const SensorPanel(),
+
+                  const Spacer(),
+
+                  const DriveControls(),
+
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
-          ),
-        ],
+
+            // CENTER CAMERA
+            const Expanded(
+              child: CameraView(),
+            ),
+
+            // RIGHT PANEL
+            Container(
+              width: 220,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  const Spacer(),
+
+                  const ServoControls(),
+
+                  const SizedBox(height: 24),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
