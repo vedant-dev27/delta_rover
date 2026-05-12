@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/device.dart';
+import 'package:delta_rover/models/device.dart';
 
 class DeviceTile extends StatelessWidget {
   const DeviceTile({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:delta_rover/widgets/add_dialog.dart';
 import 'package:delta_rover/models/device.dart';
-import 'package:delta_rover/widgets/device_tile.dart';
-import '../services/device_storage_service.dart';
-import 'control_screen.dart';
+import 'package:delta_rover/services/device_storage_service.dart';
+import 'package:delta_rover/screens/control_screen.dart';
+import 'package:delta_rover/widgets/device/device_tile.dart';
+import 'package:delta_rover/widgets/device/add_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
