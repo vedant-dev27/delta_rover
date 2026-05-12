@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:delta_rover/widgets/control/camera/camera_view.dart';
+import 'package:delta_rover/widgets/control/drive/drive_controls.dart';
 
 class ControlScreen extends StatelessWidget {
   const ControlScreen({super.key});
@@ -11,9 +12,11 @@ class ControlScreen extends StatelessWidget {
         children: [
           CameraView(),
           Expanded(
-            child: Center(
-              child: Text(
-                "Robot Controls Here",
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(36, 0, 0, 0),
+                child: DriveControls(),
               ),
             ),
           ),
