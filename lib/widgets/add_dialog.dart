@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AddDeviceDialog extends StatefulWidget {
-  const AddDeviceDialog({super.key});
+  const AddDeviceDialog({
+    super.key,
+    required this.onAdd,
+  });
+
+  final void Function(String name, String ip) onAdd;
 
   @override
   State<AddDeviceDialog> createState() => _AddDeviceDialogState();
@@ -72,6 +77,11 @@ class _AddDeviceDialogState extends State<AddDeviceDialog> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
+                      widget.onAdd(
+                        nameController.text,
+                        ipController.text,
+                      );
+
                       Navigator.pop(context);
                     },
                     child: const Text("Add"),

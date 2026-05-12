@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:delta_rover/widgets/add_dialog.dart ';
+import 'package:delta_rover/widgets/add_dialog.dart';
+import 'package:delta_rover/models/device.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +10,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  List<Device> devices = [];
+
+  void addDevice(String name, String ip) {
+    setState(() {
+      devices.add(
+        Device(name: name, ip: ip),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,30 +34,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Expanded(
-              child: Center(
-                child: Text(
-                  'No devices connected',
-                  style: TextStyle(
-                    color: Color(0xFF8E8E93),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+      body: devices.isEmpty
+          ? const Center(
+              child: Text("No devices added"),
+            )
+          : ListView.builder(
+              itemCount: devices.length,
+              itemBuilder: (context, index) {
+                final device = devices[index];
+
+                return ListTile(
+                  title: Text(device.name),
+                  subtitle: Text(device.ip),
+                );
+              },
             ),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
             context: context,
-            builder: (context) => const AddDeviceDialog(),
+            builder: (context) => AddDeviceDialog(
+              onAdd: addDevice,
+            ),
           );
         },
         child: const Icon(Icons.add),
