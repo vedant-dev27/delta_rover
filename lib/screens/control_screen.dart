@@ -1,8 +1,8 @@
+import 'package:delta_rover/widgets/control/drive/steering_controls.dart';
+import 'package:delta_rover/widgets/control/drive/throttle_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delta_rover/widgets/control/camera/camera_view.dart';
-import 'package:delta_rover/widgets/control/drive/drive_controls.dart';
-import 'package:delta_rover/widgets/control/servo/servo_control.dart';
 import 'package:delta_rover/widgets/control/sensors/sensor_panel.dart';
 
 class ControlScreen extends StatefulWidget {
@@ -58,7 +58,7 @@ class _ControlScreenState extends State<ControlScreen> {
 
                   const Spacer(),
 
-                  const DriveControls(),
+                  const ThrottleControls(),
 
                   const SizedBox(height: 24),
                 ],
@@ -78,9 +78,9 @@ class _ControlScreenState extends State<ControlScreen> {
                 children: [
                   const Spacer(),
 
-                  const ServoControls(),
+                  const SteeringControls(),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 70),
                 ],
               ),
             ),
