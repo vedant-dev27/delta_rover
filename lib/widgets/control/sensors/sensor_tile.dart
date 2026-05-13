@@ -13,13 +13,11 @@ class SensorTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        color: const Color(0xFF1C1C1F),
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF3B3B40), width: 1.2),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -27,19 +25,18 @@ class SensorTile extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(
-              color: Colors.grey.shade500,
-              fontSize: 12,
+            style: const TextStyle(
+              color: Colors.white38,
+              fontSize: 11,
+              letterSpacing: 0.8,
             ),
           ),
-
           const SizedBox(height: 4),
-
           Text(
             value,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
           ),

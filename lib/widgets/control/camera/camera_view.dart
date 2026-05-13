@@ -5,24 +5,16 @@ class CameraView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: AspectRatio(
-        aspectRatio: 3 / 2,
-        child: Container(
-          margin: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: const Center(
-            child: Text(
-              'Camera Feed Placeholder',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
-            ),
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF3B3B40), width: 1.2),
+      ),
+      child: const Center(
+        child: Text(
+          'Camera Feed Placeholder',
+          style: TextStyle(color: Colors.white54, fontSize: 16),
         ),
       ),
     );
