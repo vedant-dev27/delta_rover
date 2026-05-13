@@ -1,5 +1,6 @@
 import 'package:delta_rover/widgets/control/drive/steering_controls.dart';
 import 'package:delta_rover/widgets/control/drive/throttle_controls.dart';
+import 'package:delta_rover/widgets/control/servo/servo_sliders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delta_rover/widgets/control/camera/camera_view.dart';
@@ -76,6 +77,8 @@ class _ControlScreenState extends State<ControlScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
+                  const ServoSliders(),
+
                   const Spacer(),
 
                   const SteeringControls(),
