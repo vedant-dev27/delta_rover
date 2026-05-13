@@ -54,7 +54,7 @@ class _ControlScreenState extends State<ControlScreen> {
                     ConnectionStatus(connected: true),
                     const Spacer(),
                     const ThrottleControls(),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 48),
                   ],
                 ),
               ),
@@ -65,9 +65,9 @@ class _ControlScreenState extends State<ControlScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    const TopSensorStrip(),
-                    const SizedBox(height: 10),
                     const Expanded(child: CameraView()),
+                    const SizedBox(height: 10),
+                    const TopSensorStrip(),
                     const SizedBox(height: 10),
                     const BottomSensorStrip(),
                   ],
@@ -84,7 +84,7 @@ class _ControlScreenState extends State<ControlScreen> {
                     ServoSliders(),
                     Spacer(),
                     SteeringControls(),
-                    SizedBox(height: 16),
+                    SizedBox(height: 78),
                   ],
                 ),
               ),
@@ -110,7 +110,10 @@ class _Panel extends StatelessWidget {
       decoration: BoxDecoration(
         color: _kPanelColor,
         borderRadius: BorderRadius.circular(_kPanelRadius),
-        border: Border.all(color: _kPanelBorder, width: 1.2),
+        border: Border.all(
+          color: _kPanelBorder,
+          width: 1.2,
+        ),
       ),
       child: child,
     );
