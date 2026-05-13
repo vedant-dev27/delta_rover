@@ -13,7 +13,12 @@ const _kPanelBorder = Color(0xFF3B3B40);
 const _kPanelRadius = 16.0;
 
 class ControlScreen extends StatefulWidget {
-  const ControlScreen({super.key});
+  const ControlScreen({
+    super.key,
+    required this.ip,
+  });
+
+  final String ip;
 
   @override
   State<ControlScreen> createState() => _ControlScreenState();
@@ -65,7 +70,11 @@ class _ControlScreenState extends State<ControlScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    const Expanded(child: CameraView()),
+                    Expanded(
+                      child: CameraView(
+                        ip: widget.ip,
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     const TopSensorStrip(),
                     const SizedBox(height: 10),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:delta_rover/models/device.dart';
+import 'package:delta_rover/services/connection_service.dart';
 import 'package:delta_rover/services/device_storage_service.dart';
 import 'package:delta_rover/screens/control_screen.dart';
 import 'package:delta_rover/widgets/device/device_tile.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   List<Device> devices = [];
   final storage = DeviceStorageService();
+  final connectionService = ConnectionService();
 
   @override
   void initState() {
@@ -68,13 +70,27 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                 return DeviceTile(
                   device: device,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ControlScreen(),
-                      ),
-                    );
+                  onTap: () async {
+                    final success = await connectionService.connect(device.ip);
+
+                    if (!context.mounted) return;
+
+                    if (success) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ControlScreen(
+                            ip: device.ip,
+                          ),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Failed to connect'),
+                        ),
+                      );
+                    }
                   },
                 );
               },
