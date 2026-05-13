@@ -4,7 +4,8 @@ import 'package:delta_rover/widgets/control/servo/servo_sliders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delta_rover/widgets/control/camera/camera_view.dart';
-import 'package:delta_rover/widgets/control/sensors/sensor_panel.dart';
+import 'package:delta_rover/widgets/control/sensors/top_sensor_strip.dart';
+import 'package:delta_rover/widgets/control/sensors/bottom_sensor_strip.dart';
 
 class ControlScreen extends StatefulWidget {
   const ControlScreen({super.key});
@@ -55,8 +56,6 @@ class _ControlScreenState extends State<ControlScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  const SensorPanel(),
-
                   const Spacer(),
 
                   const ThrottleControls(),
@@ -67,8 +66,29 @@ class _ControlScreenState extends State<ControlScreen> {
             ),
 
             // CENTER CAMERA
-            const Expanded(
-              child: CameraView(),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 8,
+                ),
+
+                child: Column(
+                  children: [
+                    const TopSensorStrip(),
+
+                    const SizedBox(height: 12),
+
+                    const Expanded(
+                      child: CameraView(),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    const BottomSensorStrip(),
+                  ],
+                ),
+              ),
             ),
 
             // RIGHT PANEL
