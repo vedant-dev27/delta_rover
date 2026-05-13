@@ -1,3 +1,4 @@
+import 'package:delta_rover/widgets/control/connection_status.dart';
 import 'package:delta_rover/widgets/control/drive/steering_controls.dart';
 import 'package:delta_rover/widgets/control/drive/throttle_controls.dart';
 import 'package:delta_rover/widgets/control/servo/servo_sliders.dart';
@@ -56,6 +57,8 @@ class _ControlScreenState extends State<ControlScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
+                  ConnectionStatus(connected: true),
+
                   const Spacer(),
 
                   const ThrottleControls(),
