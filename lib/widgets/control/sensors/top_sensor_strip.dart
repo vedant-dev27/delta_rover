@@ -21,6 +21,8 @@ class _TopSensorStripState extends State<TopSensorStrip> {
   String temperature = '--';
   String humidity = '--';
   String u_back = '--';
+  String uFrontLeft = '--';
+  String uFrontRight = '--';
 
   Timer? timer;
 
@@ -58,6 +60,13 @@ class _TopSensorStripState extends State<TopSensorStrip> {
       if (ultrasonic['u_back'] != null) {
         u_back = '${ultrasonic['u_back']}';
       }
+      if (ultrasonic['u_front_left'] != null) {
+        uFrontLeft = '${ultrasonic['u_front_left']}';
+      }
+
+      if (ultrasonic['u_front_right'] != null) {
+        uFrontRight = '${ultrasonic['u_front_right']}';
+      }
     });
   }
 
@@ -81,19 +90,19 @@ class _TopSensorStripState extends State<TopSensorStrip> {
 
         const SizedBox(width: 8),
 
-        const Expanded(
+        Expanded(
           child: SensorTile(
-            label: 'U2',
-            value: '--',
+            label: 'U LEFT',
+            value: '$uFrontLeft cm',
           ),
         ),
 
         const SizedBox(width: 8),
 
-        const Expanded(
+        Expanded(
           child: SensorTile(
-            label: 'U3',
-            value: '--',
+            label: 'U RIGHT',
+            value: '$uFrontRight cm',
           ),
         ),
 
