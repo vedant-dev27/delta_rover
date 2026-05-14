@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../services/telemetry_service.dart';
+import 'mpu_table.dart';
 import 'sensor_tile.dart';
 
 class BottomSensorStrip extends StatefulWidget {
@@ -18,8 +19,8 @@ class BottomSensorStrip extends StatefulWidget {
 }
 
 class _BottomSensorStripState extends State<BottomSensorStrip> {
-  String accel = '--';
-  String gyro = '--';
+  Map<String, dynamic>? accelData;
+  Map<String, dynamic>? gyroData;
 
   Timer? timer;
 
@@ -44,17 +45,9 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
 
     final mpu = data['mpu'];
 
-    final accelData = mpu['accel'];
-    final gyroData = mpu['gyro'];
-
     setState(() {
-      accel =
-          'X:${accelData['x'].toStringAsFixed(1)} '
-          'Y:${accelData['y'].toStringAsFixed(1)}';
-
-      gyro =
-          'X:${gyroData['x'].toStringAsFixed(1)} '
-          'Y:${gyroData['y'].toStringAsFixed(1)}';
+      accelData = mpu['accel'];
+      gyroData = mpu['gyro'];
     });
   }
 
@@ -67,12 +60,16 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
 
   @override
   Widget build(BuildContext context) {
+    if (accelData == null || gyroData == null) {
+      return const SizedBox.shrink();
+    }
+
     return Row(
       children: [
         const Expanded(
           child: SensorTile(
             label: 'PIR 1',
-            value: '--',
+            value: '--\n ',
           ),
         ),
 
@@ -81,25 +78,27 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
         const Expanded(
           child: SensorTile(
             label: 'PIR 2',
-            value: '--',
+            value: '--\n ',
           ),
         ),
 
         const SizedBox(width: 8),
 
         Expanded(
-          child: SensorTile(
-            label: 'ACCEL',
-            value: accel,
-          ),
-        ),
+          flex: 3,
 
-        const SizedBox(width: 8),
+          child: MpuTable(
+            ax: accelData!['x'].toStringAsFixed(1),
 
-        Expanded(
-          child: SensorTile(
-            label: 'GYRO',
-            value: gyro,
+            ay: accelData!['y'].toStringAsFixed(1),
+
+            az: accelData!['z'].toStringAsFixed(1),
+
+            gx: gyroData!['x'].toStringAsFixed(1),
+
+            gy: gyroData!['y'].toStringAsFixed(1),
+
+            gz: gyroData!['z'].toStringAsFixed(1),
           ),
         ),
       ],
