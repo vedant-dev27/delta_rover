@@ -22,6 +22,9 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
   Map<String, dynamic>? accelData;
   Map<String, dynamic>? gyroData;
 
+  bool pirFront = false;
+  bool pirBack = false;
+
   Timer? timer;
 
   @override
@@ -44,10 +47,13 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
     if (data == null || !mounted) return;
 
     final mpu = data['mpu'];
+    final pir = data['pir'];
 
     setState(() {
       accelData = mpu['accel'];
       gyroData = mpu['gyro'];
+      pirFront = pir['front'];
+      pirBack = pir['back'];
     });
   }
 
@@ -66,19 +72,21 @@ class _BottomSensorStripState extends State<BottomSensorStrip> {
 
     return Row(
       children: [
-        const Expanded(
+        SizedBox(
+          width: 90,
           child: SensorTile(
             label: 'PIR 1',
-            value: '--\n ',
+            value: pirFront ? 'MOTION\n' : 'IDLE\n',
           ),
         ),
 
         const SizedBox(width: 8),
 
-        const Expanded(
+        SizedBox(
+          width: 90,
           child: SensorTile(
             label: 'PIR 2',
-            value: '--\n ',
+            value: pirBack ? 'MOTION\n' : 'IDLE\n',
           ),
         ),
 
