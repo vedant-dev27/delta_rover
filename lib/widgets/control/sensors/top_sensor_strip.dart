@@ -20,6 +20,7 @@ class TopSensorStrip extends StatefulWidget {
 class _TopSensorStripState extends State<TopSensorStrip> {
   String temperature = '--';
   String humidity = '--';
+  String u_back = '--';
 
   Timer? timer;
 
@@ -44,6 +45,7 @@ class _TopSensorStripState extends State<TopSensorStrip> {
 
     setState(() {
       final dht = data['dht'];
+      final ultrasonic = data['ultrasonic'];
 
       if (dht['temperature'] != null) {
         temperature = '${dht['temperature']}';
@@ -51,6 +53,10 @@ class _TopSensorStripState extends State<TopSensorStrip> {
 
       if (dht['humidity'] != null) {
         humidity = '${dht['humidity']}';
+      }
+
+      if (ultrasonic['u_back'] != null) {
+        u_back = '${ultrasonic['u_back']}';
       }
     });
   }
@@ -66,10 +72,10 @@ class _TopSensorStripState extends State<TopSensorStrip> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: SensorTile(
-            label: 'U1',
-            value: '--',
+            label: 'U BACK',
+            value: '$u_back cm',
           ),
         ),
 
