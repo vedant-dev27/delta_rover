@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../services/sensors/dht_service.dart';
+import '../../../services/telemetry_service.dart';
 import 'sensor_tile.dart';
 
 class TopSensorStrip extends StatefulWidget {
@@ -36,19 +36,21 @@ class _TopSensorStripState extends State<TopSensorStrip> {
   }
 
   Future<void> fetch() async {
-    final data = await DhtService.getData(
+    final data = await TelemetryService.getData(
       widget.ip,
     );
 
     if (data == null || !mounted) return;
 
     setState(() {
-      if (data['temperature'] != null) {
-        temperature = '${data['temperature']}';
+      final dht = data['dht'];
+
+      if (dht['temperature'] != null) {
+        temperature = '${dht['temperature']}';
       }
 
-      if (data['humidity'] != null) {
-        humidity = '${data['humidity']}';
+      if (dht['humidity'] != null) {
+        humidity = '${dht['humidity']}';
       }
     });
   }

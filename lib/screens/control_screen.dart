@@ -81,7 +81,7 @@ class _ControlScreenState extends State<ControlScreen> {
                     ),
                     const SizedBox(height: 10),
                     BottomSensorStrip(
-                      // ip: widget.ip,
+                      ip: widget.ip,
                     ),
                   ],
                 ),
