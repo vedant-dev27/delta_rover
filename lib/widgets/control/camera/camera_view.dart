@@ -27,24 +27,25 @@ class CameraView extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
 
-          child: Mjpeg(
-            stream: 'http://$ip:8000/stream',
+          child: Transform.rotate(
+            angle: 3.1415926535,
+            child: Mjpeg(
+              stream: 'http://$ip:8000/stream',
+              isLive: true,
+              fit: BoxFit.cover,
 
-            isLive: true,
-
-            fit: BoxFit.cover,
-
-            error: (context, error, stack) {
-              return const Center(
-                child: Text(
-                  'Camera Offline',
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 16,
+              error: (context, error, stack) {
+                return const Center(
+                  child: Text(
+                    'Camera Offline',
+                    style: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
