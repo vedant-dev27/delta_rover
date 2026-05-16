@@ -93,8 +93,10 @@ class _ControlScreenState extends State<ControlScreen> {
               _Panel(
                 width: 200,
                 child: Column(
-                  children: const [
-                    ServoSliders(),
+                  children: [
+                    ServoSliders(
+                      ip: widget.ip,
+                    ),
                     Spacer(),
                     SteeringControls(),
                     SizedBox(height: 78),
