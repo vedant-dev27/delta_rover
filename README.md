@@ -17,7 +17,6 @@ This project focuses on building a maintainable, scalable robotics control inter
 
 ### Camera View
 
-* Placeholder camera feed UI
 * Future PiCam integration
 * Future on-device face recognition support
 
