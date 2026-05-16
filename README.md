@@ -22,7 +22,6 @@ This project focuses on building a maintainable, scalable robotics control inter
 
 ### Drive Controls
 
-* Modular D-pad layout
 * Reusable directional buttons
 * Future movement command integration
 
