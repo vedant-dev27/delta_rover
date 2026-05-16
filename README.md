@@ -17,7 +17,7 @@ This project focuses on building a maintainable, scalable robotics control inter
 
 ### Camera View
 
-* Future PiCam integration
+* PiCam integration
 * Future on-device face recognition support
 
 ### Drive Controls
