@@ -15,10 +15,6 @@ This project focuses on building a maintainable, scalable robotics control inter
 * Device list rendering
 * Device selection and navigation
 
-## Modular Control Console
-
-The control screen is built as independent UI modules instead of a single giant screen.
-
 ### Camera View
 
 * Placeholder camera feed UI
