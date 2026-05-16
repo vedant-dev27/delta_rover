@@ -28,7 +28,6 @@ This project focuses on building a maintainable, scalable robotics control inter
 ### Servo Controls
 
 * Independent camera orientation controls
-* Compact precision-oriented D-pad
 * Future servo communication integration
 
 ### Sensor Panel
