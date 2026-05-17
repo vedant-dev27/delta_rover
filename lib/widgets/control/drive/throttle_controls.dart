@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:delta_rover/services/motor_service.dart';
 import 'drive_button.dart';
 
 class ThrottleControls extends StatelessWidget {
-  const ThrottleControls({super.key});
+  const ThrottleControls({super.key, required this.motorService});
+
+  final MotorService motorService;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +14,14 @@ class ThrottleControls extends StatelessWidget {
       children: [
         DriveButton(
           icon: Icons.keyboard_arrow_up,
-          onTap: () {},
+          onPressed: motorService.forward,
+          onReleased: motorService.stop,
         ),
-
         const SizedBox(height: 24),
-
         DriveButton(
           icon: Icons.keyboard_arrow_down,
-          onTap: () {},
+          onPressed: motorService.backward,
+          onReleased: motorService.stop,
         ),
       ],
     );

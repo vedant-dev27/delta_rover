@@ -4,11 +4,13 @@ class DriveButton extends StatefulWidget {
   const DriveButton({
     super.key,
     required this.icon,
-    required this.onTap,
+    required this.onPressed,
+    required this.onReleased,
   });
 
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
+  final VoidCallback onReleased;
 
   @override
   State<DriveButton> createState() => _DriveButtonState();
@@ -17,15 +19,27 @@ class DriveButton extends StatefulWidget {
 class _DriveButtonState extends State<DriveButton> {
   bool _pressed = false;
 
+  void _handleDown(dynamic _) {
+    setState(() => _pressed = true);
+    widget.onPressed();
+  }
+
+  void _handleUp(dynamic _) {
+    setState(() => _pressed = false);
+    widget.onReleased();
+  }
+
+  void _handleCancel() {
+    setState(() => _pressed = false);
+    widget.onReleased();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => setState(() => _pressed = true),
-      onTapUp: (_) {
-        setState(() => _pressed = false);
-        widget.onTap();
-      },
-      onTapCancel: () => setState(() => _pressed = false),
+      onTapDown: _handleDown,
+      onTapUp: _handleUp,
+      onTapCancel: _handleCancel,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 80),
         width: 68,

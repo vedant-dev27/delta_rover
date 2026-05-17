@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:delta_rover/widgets/control/camera/camera_view.dart';
 import 'package:delta_rover/widgets/control/sensors/top_sensor_strip.dart';
 import 'package:delta_rover/widgets/control/sensors/bottom_sensor_strip.dart';
+import 'package:delta_rover/services/motor_service.dart';
 
 const _kPanelColor = Color(0xFF1C1C1F);
 const _kPanelBorder = Color(0xFF3B3B40);
@@ -25,6 +26,8 @@ class ControlScreen extends StatefulWidget {
 }
 
 class _ControlScreenState extends State<ControlScreen> {
+  late final MotorService _motorService = MotorService(ip: widget.ip);
+
   @override
   void initState() {
     super.initState();
@@ -51,14 +54,13 @@ class _ControlScreenState extends State<ControlScreen> {
           padding: const EdgeInsets.all(12),
           child: Row(
             children: [
-              // LEFT PANEL
               _Panel(
                 width: 200,
                 child: Column(
                   children: [
                     ConnectionStatus(connected: true),
                     const Spacer(),
-                    const ThrottleControls(),
+                    ThrottleControls(motorService: _motorService),
                     const SizedBox(height: 48),
                   ],
                 ),
@@ -98,7 +100,7 @@ class _ControlScreenState extends State<ControlScreen> {
                       ip: widget.ip,
                     ),
                     Spacer(),
-                    SteeringControls(),
+                    SteeringControls(motorService: _motorService),
                     SizedBox(height: 78),
                   ],
                 ),
